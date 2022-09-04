@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\LogController;
 use App\Models\Merchant;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -24,10 +26,15 @@ Route::get('/dashboard', function () {
     return view('dashboard',compact('merchant'));
 })->middleware(['auth'])->name('dashboard');
 
+Route::middleware('admin')->group(function(){
+    Route::get('register', [RegisteredUserController::class, 'create'])
+                ->name('register');
+    Route::resource('admin',AdminController::class);
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/logs/{min?}/{max?}',[LogController::class,'index'])->name('logs.index');
     Route::post('/logs/',[LogController::class,'store'])->name('logs.store');
-    // Route::resource('logs',LogController::class);
 });
 
 require __DIR__.'/auth.php';

@@ -48,10 +48,11 @@ class RegisteredUserController extends Controller
             'roles_id' => $role->id
         ]);
 
-        event(new Registered($user));
+        // event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        // return redirect(RouteServiceProvider::HOME);
+        return redirect()->back()->with('success','Pendaftaran akun berhasil');
     }
 }

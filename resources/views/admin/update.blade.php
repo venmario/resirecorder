@@ -1,3 +1,20 @@
+{{-- @extends('layouts.index')
+
+@section('content')
+<div class="container vh-100 d-flex align-items-center">
+    <div class=" w-50 mx-auto border rounded shadow-sm">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Username</label>
+            <p>{{ $user->username }}</p>
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+</div>
+</div>
+@endsection --}}
+
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
@@ -14,25 +31,20 @@
 
         </div>
         @endif
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+        <div class="mt-4">
+            <x-label for="username" :value="__('Edit pegawai')" />
 
-            <!-- Name -->
-            <div>
+        </div>
+        <form method="POST" action="{{ route('admin.update',$user->username) }}">
+            @csrf
+            @method('PUT')
+            <div class="mt-4">
                 <x-label for="nama" :value="__('Nama')" />
 
-                <x-input id="nama" class="block mt-1 w-full" type="text" name="nama" :value="old('nama')" required
-                    autofocus />
+                <input
+                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
+                    id="nama" type="text" name="nama" value="{{ $user->nama }}" required>
             </div>
-
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="username" :value="__('Username')" />
-
-                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')"
-                    required />
-            </div>
-
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />
@@ -50,11 +62,11 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('dashboard') }}">
-                    {{ __('Kembali ke dashboard') }}
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('admin.index') }}">
+                    {{ __('Kembali') }}
                 </a>
                 <x-button class="ml-4">
-                    {{ __('Daftar') }}
+                    {{ __('Ubah') }}
                 </x-button>
             </div>
         </form>

@@ -1,8 +1,8 @@
 @extends('layouts.index')
 
 @section('content')
-<div class="container">
-    <div class="mt-5 w-50 mx-auto border rounded">
+<div class="container vh-100 d-flex align-items-center">
+    <div class=" w-50 mx-auto border rounded ">
         <div class="py-3">
             <div class="row justify-content-center">
                 <div class="col-6">
@@ -14,7 +14,7 @@
                     </select>
                 </div>
                 <div class="col-2 text-center">
-                    <button class="btn btn-primary" id="btnMerchant">Simpan</button>
+                    <button class="btn btn-dark" id="btnMerchant">Simpan</button>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Resi Recorder</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="{{ asset("js/jquery-3.5.1.min.js") }}"></script>
@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -33,12 +33,20 @@
                     </li>
                 </ul>
                 <div class="dropdown ms-auto">
-                    <a class="btn  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="btn  dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         {{ Auth::user()->nama }}
                     </a>
 
                     <ul class="dropdown-menu">
+                        @if (Auth::user()->role->nama == 'admin')
+                        <li>
+                            <a class="dropdown-item" href="{{ route('admin.index') }}">Daftar Pegawai</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('register') }}">Tambah Pegawai</a>
+                        </li>
+                        @endif
                         <li>
                             <a class="dropdown-item" href="{{ route('logs.index') }}">History</a>
                         </li>
