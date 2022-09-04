@@ -60,10 +60,18 @@
 <script>
     $(document).ready(function () {
         $('#table').DataTable({
-            // dom: 'Bfrtip',
-            // buttons: [
-            //     'copy', 'csv', 'excel', 'pdf', 'print'
-            // ]
+            dom: 'Bfrltip',
+            buttons: [
+                'copy', {
+                    extend: 'excel',
+                    title: '',
+                    filename: "LOG {{ date('d M Y',strtotime($min)) }} {{ $max == $min ? '' : '- '.date('d M Y',strtotime($max)) }}"
+                }, {
+                    extend: 'pdf',
+                    title: '',
+                    filename: "LOG {{ date('d M Y',strtotime($min)) }} {{ $max == $min ? '' : '- '.date('d M Y',strtotime($max)) }}"
+                },
+            ]
         });
 
         function formatDate(date) {

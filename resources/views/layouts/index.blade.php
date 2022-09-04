@@ -9,12 +9,13 @@
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="{{ asset("js/jquery-3.5.1.min.js") }}"></script>
     {{-- datatables --}}
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('js/DataTables-1.12.1/css/dataTables.bootstrap5.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/Buttons-2.2.3/css/buttons.bootstrap5.min.css') }}" />
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script> --}}
 </head>
 
 <body>
@@ -66,10 +67,16 @@
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script>
     <!-- DataTables -->
-    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/JSZip-2.5.0/jszip.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/pdfmake-0.1.36/pdfmake.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/pdfmake-0.1.36/vfs_fonts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/DataTables-1.12.1/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/DataTables-1.12.1/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/Buttons-2.2.3/js/dataTables.buttons.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/Buttons-2.2.3/js/buttons.bootstrap5.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/Buttons-2.2.3/js/buttons.colVis.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/Buttons-2.2.3/js/buttons.html5.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/Buttons-2.2.3/js/buttons.print.min.js') }}"></script>
     <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js">
     </script>
     @yield('javascript')
