@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Ecom;
 use App\Models\Log;
 use App\Models\Merchant;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+
+use function PHPUnit\Framework\at;
 
 class LogController extends Controller
 {
@@ -16,12 +19,22 @@ class LogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($min = null, $max = null)
     {
         //
-        $logs = Log::all();
-        // dd($logs[0]->merchant);
-        return view('log.semua',compact('logs'));
+        if ($min == null || $max == null) {
+            $min = date('Y-m-d'); 
+            $max = date('Y-m-d');           
+            $max_1 = date('Y-m-d', strtotime('+1 day'));
+        }else{
+            $max_1 = date('Y-m-d', strtotime($max.'+1 day'));
+        }
+        if (Auth::user()->role->nama == 'admin') {
+            $logs = Log::whereBetween('created_at',[$min,$max_1])->get();
+            return view('log.semua',compact('logs','min','max'));
+        }
+        $logs = Log::whereBetween('created_at',[$min,$max_1])->where('users_username', Auth::user()->username)->get();
+        return view('log.semua',compact('logs','min','max'));
     }
 
     /**

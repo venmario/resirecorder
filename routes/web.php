@@ -24,6 +24,10 @@ Route::get('/dashboard', function () {
     return view('dashboard',compact('merchant'));
 })->middleware(['auth'])->name('dashboard');
 
-Route::resource('logs',LogController::class);
+Route::middleware('auth')->group(function () {
+    Route::get('/logs/{min?}/{max?}',[LogController::class,'index'])->name('logs.index');
+    Route::post('/logs/',[LogController::class,'store'])->name('logs.store');
+    // Route::resource('logs',LogController::class);
+});
 
 require __DIR__.'/auth.php';
