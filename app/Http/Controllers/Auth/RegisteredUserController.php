@@ -36,12 +36,12 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:20', 'unique:users'],
+            'username' => ['required', 'alpha_dash', 'max:20', 'unique:users'],
             'password' => ['required', 'confirmed','max:20', Rules\Password::defaults()],
         ]);
 
         $role = Role::where('nama','karyawan')->first();
-        $user = User::create([
+        User::create([
             'nama' => $request->nama,
             'username' => $request->username,
             'password' => Hash::make($request->password),

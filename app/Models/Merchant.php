@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Merchant extends Model
 {
     use HasFactory;
-
+    protected $fillable = ['nama'];
+    public $timestamps = false;
     public function log()
     {
         return $this->hasMany(Log::class);

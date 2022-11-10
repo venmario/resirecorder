@@ -16,12 +16,13 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     {{-- <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script> --}}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">RjK</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('dashboard') }}">Dashboard</a>
                     </li>
                 </ul>
                 <div class="dropdown ms-auto">
@@ -41,10 +42,13 @@
                     <ul class="dropdown-menu">
                         @if (Auth::user()->role->nama == 'admin')
                         <li>
-                            <a class="dropdown-item" href="{{ route('admin.index') }}">Daftar Pegawai</a>
+                            <a class="dropdown-item" href="{{ route('admin.index') }}">Daftar PIC</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{ route('register') }}">Tambah Pegawai</a>
+                            <a class="dropdown-item" href="{{ route('register') }}">Tambah PIC</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('merchant.create') }}">Tambah Merchant</a>
                         </li>
                         @endif
                         <li>
@@ -87,6 +91,7 @@
     <script type="text/javascript" src="{{ asset('js/Buttons-2.2.3/js/buttons.print.min.js') }}"></script>
     <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js">
     </script>
+    <script src="{{ asset('js/sweetalert2/sweetalert2.all.min.js') }}"></script>
     @yield('javascript')
 </body>
 

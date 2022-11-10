@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ecom;
 use App\Models\Log;
 use App\Models\Merchant;
+use App\Rules\AwbRules;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,9 +20,10 @@ class LogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($min = null, $max = null)
+    public function index($min = null, $max = null, $merchant = null)
     {
-        //
+        
+        // dd($max, $min, $merchant);
         if ($min == null || $max == null) {
             $min = date('Y-m-d'); 
             $max = date('Y-m-d');           
@@ -29,12 +31,23 @@ class LogController extends Controller
         }else{
             $max_1 = date('Y-m-d', strtotime($max.'+1 day'));
         }
-        if (Auth::user()->role->nama == 'admin') {
+        $merchants = Merchant::all();
+        // if (Auth::user()->role->nama == 'admin') {
+        //     if ($merchant == null || $merchant == 'semua') {
+        //         $logs = Log::whereBetween('created_at',[$min,$max_1])->get();
+        //     }
+        //     else{
+        //         $logs = Log::whereBetween('created_at',[$min,$max_1])->where('merchants_id',$merchant)->get();                
+        //     }
+        //     return view('log.semua',compact('logs','min','max','merchants'));
+        // }
+        if ($merchant == null || $merchant == 'semua') {
             $logs = Log::whereBetween('created_at',[$min,$max_1])->get();
-            return view('log.semua',compact('logs','min','max'));
         }
-        $logs = Log::whereBetween('created_at',[$min,$max_1])->where('users_username', Auth::user()->username)->get();
-        return view('log.semua',compact('logs','min','max'));
+        else{
+            $logs = Log::whereBetween('created_at',[$min,$max_1])->where('merchants_id',$merchant)->get();
+        }
+        return view('log.semua',compact('logs','min','max','merchants'));
     }
 
     /**
@@ -57,7 +70,7 @@ class LogController extends Controller
     {
         //
         $validator = Validator::make($request->all(), [
-            'awb' => ['required', 'unique:logs'],
+            'awb' => ['required',new AwbRules, 'unique:logs'],
             'merchant' => ['required'],
             'ecommerce' => ['required'],
             'ekspedisi' => ['required'],

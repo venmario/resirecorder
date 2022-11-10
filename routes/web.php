@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\MerchantController;
 use App\Models\Merchant;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->middleware('guest');
 
 Route::get('/dashboard', function () {
     $merchant = Merchant::all();
@@ -30,10 +31,11 @@ Route::middleware('admin')->group(function(){
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
     Route::resource('admin',AdminController::class);
+    Route::resource('merchant', MerchantController::class);
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/logs/{min?}/{max?}',[LogController::class,'index'])->name('logs.index');
+    Route::get('/logs/{min?}/{max?}/{merchant?}',[LogController::class,'index'])->name('logs.index');
     Route::post('/logs/',[LogController::class,'store'])->name('logs.store');
 });
 

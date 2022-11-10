@@ -20,6 +20,7 @@
         "tailwindcss": "^3.0.18"
     },
     "dependencies": {
-        "datatables.net": "^1.12.1"
+        "datatables.net": "^1.12.1",
+        "sweetalert2": "^11.4.33"
     }
 }
