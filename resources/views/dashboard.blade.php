@@ -28,9 +28,10 @@
                 </div>
             </div>
         </div>
-        <div class="px-4">
-            <ul class="list-group" id="history-sementara">
+        <div class="px-4 pb-3">
+            <ul class="list-group mb-3" id="history-sementara">
             </ul>
+            <p class="bg-dark text-white d-inline p-1 text-center">Total : <span id="total-scan">0</span></p>
         </div>
     </div>
 </div>
@@ -50,6 +51,7 @@
     const jneShopee = /^CM\d{11}$/g;
     let ecoms;
     let ekspedisi;
+    let totalScan = 0;
 
     $('#btnMerchant').click(function () {
         idmerchant = $('#merchant').val();
@@ -135,8 +137,11 @@
                             console.log(data['validations']);
                         }
                     } else {
+
                         var audio = new Audio('{{ asset("audio/masuk.mp3") }}');
                         audio.play();
+                        totalScan = totalScan + 1;
+                        $('#total-scan').html(totalScan);
                         if (jumHistory >= 4) {
                             $('#history-sementara li:last-child').remove();
                         }
