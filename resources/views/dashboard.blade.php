@@ -86,7 +86,7 @@
                 if (resi.length > 0) {
                     $('#awb').val('');
                     $('#awb').focus();
-                    var audio = new Audio('https://www.w3schools.com/html/horse.mp3');
+                    var audio = new Audio('https://www.google.com/logos/fnbx/animal_sounds/sheep.mp3');
                     audio.play();
                     Swal.fire({
                         title: "LHO HE",
