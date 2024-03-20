@@ -23,7 +23,7 @@ Route::get('/', function () {
 })->middleware('guest');
 
 Route::get('/dashboard', function () {
-    $merchant = Merchant::all();
+    $merchant = Merchant::orderBy('nama','asc')->get();
     return view('dashboard',compact('merchant'));
 })->middleware(['auth'])->name('dashboard');
 
