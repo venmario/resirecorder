@@ -31,7 +31,7 @@ class LogController extends Controller
         }else{
             $max_1 = date('Y-m-d', strtotime($max.'+1 day'));
         }
-        $merchants = Merchant::all();
+        $merchants = Merchant::orderBy('nama','asc')->get();
         // if (Auth::user()->role->nama == 'admin') {
         //     if ($merchant == null || $merchant == 'semua') {
         //         $logs = Log::whereBetween('created_at',[$min,$max_1])->get();
