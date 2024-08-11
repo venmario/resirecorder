@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             MerchantSeeder::class,
             EcomSeeder::class,
+            EkspedisiSeeder::class
         ]);
     }
 }
