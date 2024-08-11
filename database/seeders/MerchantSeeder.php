@@ -17,7 +17,8 @@ class MerchantSeeder extends Seeder
         $ecoms = ['PJK', 'Jasmine', 'Loyal'];
         foreach ($ecoms as $ecom) {
             Merchant::create([
-                'nama' => $ecom
+                'nama' => $ecom,
+                'jumlah_scan' => 0
             ]);
         }
     }

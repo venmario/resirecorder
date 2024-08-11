@@ -16,6 +16,7 @@ class CreateMerchantsTable extends Migration
         Schema::create('merchants', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->integer('jumlah_scan')->default(0);
             $table->timestamps();
         });
     }

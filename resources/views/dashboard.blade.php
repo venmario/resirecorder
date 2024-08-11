@@ -122,6 +122,9 @@
                             if (data['validations']['awb'] == 'AWB sudah pernah discan') {
                                 judul = 'WES PERNAH DISCAN!';
                                 pesan = `AWB ${resi} sudah pernah discan!`;
+                            } else if (data['validations']['awb'] == 'max scan'){
+                                judul = 'MAX!';
+                                pesan = `MERCHANT INI SUDAH MENCAPAI 500 SCAN!`;
                             } else {
                                 judul = 'DOBEL COK!';
                                 pesan = `AWB ${resi} DOBEL!`;
