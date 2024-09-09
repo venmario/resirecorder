@@ -1,11 +1,13 @@
-# fly.toml app configuration file generated for resirecorder on 2024-08-12T01:27:40+07:00
+# fly.toml app configuration file generated for rjk18 on 2024-09-09T23:15:04+07:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'resirecorder'
+app = 'rjk18'
 primary_region = 'sin'
 console_command = 'php /var/www/html/artisan tinker'
+
+kill_timeout = 300
 
 [build]
   [build.args]
@@ -20,7 +22,7 @@ console_command = 'php /var/www/html/artisan tinker'
   SESSION_DRIVER = 'cookie'
   SESSION_SECURE_COOKIE = 'true'
   DB_CONNECTION = "pgsql"
-  DB_HOST = "restoapp-db.internal"
+  DB_HOST = "rjk18db.internal"
   DB_DATABASE= "resi_recorder" 
   DB_PORT = 5432
 
@@ -33,8 +35,10 @@ console_command = 'php /var/www/html/artisan tinker'
   processes = ['app']
 
 [[vm]]
-  size = 'shared-cpu-1x'
-  
+  memory = '512mb'
+  cpu_kind = 'shared'
+  cpus = 2
+
 [processes]
   app = ""
   cron = "cron -f"
