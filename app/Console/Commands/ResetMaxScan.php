@@ -38,6 +38,6 @@ class ResetMaxScan extends Command
      */
     public function handle()
     {
-        Merchant::query()->update(['max_scan' => 0]);
+        Merchant::query()->update(['jumlah_scan' => 0]);
     }
 }
