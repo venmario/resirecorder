@@ -44,7 +44,9 @@ class LogController extends Controller
         //     }
         //     return view('log.semua',compact('logs','min','max','merchants'));
         // }
-        if ($merchant == null || $merchant == 'semua') {
+        if ($merchant == null) {
+            $logs = [];
+        } else if ($merchant == 'semua') {
             $logs = Log::whereBetween('created_at', [$min, $max_1])->get();
         } else {
             $logs = Log::whereBetween('created_at', [$min, $max_1])->where('merchants_id', $merchant)->get();
@@ -88,7 +90,10 @@ class LogController extends Controller
         try {
             $merchant = Merchant::findOrFail($request->merchant);
             FacadesLog::info("jumlah_scan : " . $merchant->jumlah_scan);
-            if ($merchant->jumlah_scan == 500) {
+
+            $logCount = Log::where('merchants_id', $request->merchant)->count();
+
+            if ($logCount == 500) {
                 return response()
                     ->json([
                         'success' => false,
